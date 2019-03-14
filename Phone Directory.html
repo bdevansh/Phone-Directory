@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+  var i;
+  var fname = [];
+  var mobile = [];
+function show1()
+{
+    var curr_len = fname.length;
+    var text = "";
+    var x = document.getElementById("fname");
+
+    if (x.value == "")
+    {
+    alert("Name must be filled out");
+    return false;
+    }
+    text = "Name : " + x.value + "<br>";
+
+
+    x.value = "";
+
+    var x = document.getElementById("mobile");
+
+    var phoneno = /^\d{10}$/;
+    if (x.value.match(phoneno) == null)
+    {
+    alert("Mobile no. must be of 10 digits");
+    return false;
+    }
+    fname.push(text)
+    text = "Number : " + x.value ;
+
+    mobile.push(text)
+
+    x.value = "";
+
+    display1();
+}
+
+
+function delete1(position) {
+  fname.splice(position, 1);
+  mobile.splice(position, 1);
+
+  display1();
+}
+
+function display1(){
+  var display = "";
+  fLen = fname.length;
+   for( i = 0 ; i < fLen ; i++){
+    display += fname[i];
+    display += mobile[i] + "<br>"+ "<button type='button' onclick='delete1("+i+")'>Delete above!</button><br><br>";
+   }
+   document.getElementById("demo2").innerHTML = display;
+}
+
+</script>
+
+<form id="frm2" >
+  Name: <input type="text" id="fname"><br>
+  Number: <input type="text" id="mobile"><br><br>
+  <button type="button" name="show" onclick="show1()">Submit</button>
+</form>
+
+<p id="demo2"></p>
+
+</body>
+</html>
